@@ -6,6 +6,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 
 public class Client 
 {
@@ -15,6 +18,9 @@ public class Client
     public Client(String ip, int port, Stage stage)
     {
         this.stage = stage;
+        
+
+
         try
         {
             this.socket = new Socket(ip, port);
@@ -28,6 +34,14 @@ public class Client
     void start()
     {
         log();
+        try
+        {
+            Parent root = FXMLLoader.load(getClass().getResource("Client.fxml"));
+        }
+        catch(Exception e)
+        {
+            System.err.println("FXML LOAD : " + e.getMessage());
+        }
     }
 
     void log()
